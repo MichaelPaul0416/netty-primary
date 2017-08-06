@@ -7,6 +7,6 @@ package com.hundsun.learn.wq.netty.traditional;
  */
 public class Server {
     public static void main(String args[]){
-        System.out.println("This is Server ");
+        System.out.println("This is Server for Client");
     }
 }
