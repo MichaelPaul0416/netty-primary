@@ -47,7 +47,7 @@ public class TimeHandler implements Runnable {
                     logger.info("the time server response message to client ["+socket.getInetAddress()+"] succeed");
                 }else{
                     logger.info("the time server received a wrong time_query command from ip["+socket.getInetAddress()+"]");
-                    out.println("WRONG COMMAND");
+                    out.println("WRONG COMMAND,PLEASE INPUT AGAIN");
                 }
             }
         } catch (IOException e) {
