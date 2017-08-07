@@ -1,4 +1,4 @@
-package com.hundsun.learn.wq.netty.traditional.base;
+package com.hundsun.learn.wq.netty.base;
 
 /**
  * @Author:wangqiang20995
