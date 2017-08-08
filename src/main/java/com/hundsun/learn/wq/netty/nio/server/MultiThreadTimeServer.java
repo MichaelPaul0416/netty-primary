@@ -27,7 +27,7 @@ public class MultiThreadTimeServer implements Runnable {
 
     private ServerSocketChannel serverSocketChannel;
 
-    private boolean stop;
+    private volatile boolean stop;
 
     public MultiThreadTimeServer(int port){
         try {
@@ -65,10 +65,10 @@ public class MultiThreadTimeServer implements Runnable {
                         handleInput(selectionKey);
                     }catch (Exception e){
                         if(selectionKey != null){
-                            logger.error("stop selectionKey ["+selectionKey.toString()+"]");
+                            logger.info("stop selectionKey ["+selectionKey.toString()+"]");
                             selectionKey.cancel();
                             if(selectionKey.channel() != null){
-                                logger.error("close the channel ["+selectionKey.channel().toString()+"] of this selectionKey");
+                                logger.info("close the channel ["+selectionKey.channel().toString()+"] of this selectionKey");
                                 selectionKey.channel().close();
                             }
                         }
@@ -77,12 +77,13 @@ public class MultiThreadTimeServer implements Runnable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if(selector != null){
-                try {
-                    selector.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+        }
+        if(selector != null){
+            try {
+                selector.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -95,13 +96,14 @@ public class MultiThreadTimeServer implements Runnable {
                 SocketChannel socketChannel = serverSocketChannel.accept();
                 socketChannel.configureBlocking(false);
                 socketChannel.register(selector,SelectionKey.OP_READ);
+                logger.info("client channel ["+socketChannel+"] has been registed to selector...");
             }
             if(selectionKey.isReadable()){
-                logger.info("start read the bytes of this channel...");
                 SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
-                logger.info("allocate the space of this channel...");
                 ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
                 int readBytes = socketChannel.read(byteBuffer);
+                logger.info("start read the bytes of this channel ["+selectionKey.channel()+"]");
+                logger.info("allocate the space of this channel...");
                 if(readBytes > 0){
                     byteBuffer.flip();
                     byte[] bytes = new byte[byteBuffer.remaining()];
@@ -115,7 +117,7 @@ public class MultiThreadTimeServer implements Runnable {
                     }else{
                         response = "BAD REQUEST FOR TIME SERVER";
                     }
-                    logger.info("response message to client by this channel...");
+                    logger.info("response message to client by this channel ["+socketChannel+"]");
                     doWrite(socketChannel,response);
                     logger.info("the message ["+response+"] response to client successfully...");
                 }else if(readBytes < 0){
