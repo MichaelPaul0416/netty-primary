@@ -25,7 +25,7 @@ public class Demo {
     }
 
     public static void main(String args[]){
-        //Demo是被回调方，Callback是回调方，callback预留一个接口，让被回调方按照规范约定调用，然后callback在该接口的实现中，回调某一个回调方的具体方法
+        //Demo是被回调方，Callback是回调方【一般来说是系统或者框架】，callback预留一个接口，让被回调方按照规范约定调用，然后callback在该接口的实现中，回调某一个回调方的具体方法
         Demo demo = new Demo();
         Callback callback = new Callback() {
             @Override
