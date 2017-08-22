@@ -1,4 +1,4 @@
-package com.hundsun.learn.wq.netty.aio.client;
+package com.hundsun.learn.wq.io.aio.client;
 
 import org.apache.log4j.Logger;
 

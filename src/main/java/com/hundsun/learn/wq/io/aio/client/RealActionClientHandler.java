@@ -1,6 +1,6 @@
-package com.hundsun.learn.wq.netty.aio.client;
+package com.hundsun.learn.wq.io.aio.client;
 
-import com.hundsun.learn.wq.netty.aio.server.ReadCompletionHandler;
+import com.hundsun.learn.wq.io.aio.server.ReadCompletionHandler;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;

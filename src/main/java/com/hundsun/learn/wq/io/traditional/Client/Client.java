@@ -1,6 +1,6 @@
-package com.hundsun.learn.wq.netty.traditional.Client;
+package com.hundsun.learn.wq.io.traditional.Client;
 
-import com.hundsun.learn.wq.netty.base.AbstractObject;
+import com.hundsun.learn.wq.io.base.AbstractObject;
 import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;

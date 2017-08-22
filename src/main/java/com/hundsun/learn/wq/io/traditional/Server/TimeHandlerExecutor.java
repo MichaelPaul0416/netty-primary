@@ -1,4 +1,4 @@
-package com.hundsun.learn.wq.netty.traditional.Server;
+package com.hundsun.learn.wq.io.traditional.Server;
 
 import org.apache.log4j.Logger;
 

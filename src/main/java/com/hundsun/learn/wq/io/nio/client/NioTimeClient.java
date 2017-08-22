@@ -1,6 +1,6 @@
-package com.hundsun.learn.wq.netty.nio.client;
+package com.hundsun.learn.wq.io.nio.client;
 
-import com.hundsun.learn.wq.netty.base.AbstractObject;
+import com.hundsun.learn.wq.io.base.AbstractObject;
 
 /**
  * @Author:wangqiang20995

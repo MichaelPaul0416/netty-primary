@@ -1,6 +1,6 @@
-package com.hundsun.learn.wq.netty.traditional.Server;
+package com.hundsun.learn.wq.io.traditional.Server;
 
-import com.hundsun.learn.wq.netty.base.AbstractObject;
+import com.hundsun.learn.wq.io.base.AbstractObject;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;

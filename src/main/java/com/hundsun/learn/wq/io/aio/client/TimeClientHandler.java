@@ -1,7 +1,6 @@
-package com.hundsun.learn.wq.netty.aio.client;
+package com.hundsun.learn.wq.io.aio.client;
 
 import org.apache.log4j.Logger;
-import sun.rmi.runtime.Log;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
