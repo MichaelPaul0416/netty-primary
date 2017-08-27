@@ -26,7 +26,7 @@ public class ASynTimeServerHandler implements Runnable{
         try {
             socketChannel = AsynchronousServerSocketChannel.open();
             socketChannel.bind(new InetSocketAddress("127.0.0.1",port));
-            logger.info(String.format("Aio TimeServer has been initialized...bind host --> %s and port --> %s","127.0.0.1",port));
+            logger.info(String.format("Aio NettyTimeServer has been initialized...bind host --> %s and port --> %s","127.0.0.1",port));
         } catch (IOException e) {
             e.printStackTrace();
         }
