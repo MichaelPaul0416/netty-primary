@@ -28,16 +28,14 @@ public class NettyClientHandler extends ChannelHandlerAdapter{
     }
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg)
-            throws Exception{
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception{
 
         String response = (String) msg;
         logger.info("--------channelRead--------服务器发来的数据为：[" + response + "]");
     }
 
     @Override
-    public void channelReadComplete(ChannelHandlerContext ctx)
-            throws Exception{
+    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception{
         logger.info("----------------handler channelReadComplete----------------");
         ctx.flush();
     }
