@@ -42,12 +42,17 @@
             <version>2.5.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.jboss.marshalling/jboss-marshalling-river -->
         <dependency>
             <groupId>org.jboss.marshalling</groupId>
-            <artifactId>jboss-marshalling-river</artifactId>
+            <artifactId>jboss-marshalling</artifactId>
             <version>1.4.10.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.marshalling</groupId>
+            <artifactId>jboss-marshalling-serial</artifactId>
+            <version>1.4.10.Final</version>
+        </dependency>
+
 
 
     </dependencies>
