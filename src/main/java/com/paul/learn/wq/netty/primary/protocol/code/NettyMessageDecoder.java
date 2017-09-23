@@ -50,32 +50,32 @@ public class NettyMessageDecoder extends LengthFieldBasedFrameDecoder{
        NettyMessage nettyMessage = new NettyMessage();
        NettyHeader header = new NettyHeader();
        logger.info("流解码器开始构造消息头");
-       header.setCrcCode(byteBuf.readInt());
-       header.setLength(byteBuf.readInt());
-       header.setSessionId(byteBuf.readLong());
-       header.setType(byteBuf.readByte());
-       header.setPriority(byteBuf.readByte());
+       header.setCrcCode(buffer.readInt());
+       header.setLength(buffer.readInt());
+       header.setSessionId(buffer.readLong());
+       header.setType(buffer.readByte());
+       header.setPriority(buffer.readByte());
 
        //读取附件
-        int attachmentSize = byteBuf.readInt();
+        int attachmentSize = buffer.readInt();
         if(attachmentSize > 0){
             Map<String,Object> attachment = new HashMap<>();
             int keySize ;
             byte[] keyByte ;
             String key ;
             for(int i = 0;i< attachmentSize ;i++){
-                keySize = byteBuf.readInt();
+                keySize = buffer.readInt();
                 keyByte = new byte[keySize];
-                byteBuf.readBytes(keyByte);
+                buffer.readBytes(keyByte);
                 key = new String(keyByte,"UTF-8");
-                attachment.put(key,marshallingDecoder.decode(byteBuf));//object是利用自己的javabean解码器解出来的对象
+                attachment.put(key,marshallingDecoder.decode(buffer));//object是利用自己的javabean解码器解出来的对象
             }
             header.setAttachment(attachment);
         }
 
         //无论是否有附件，剩下来的字节中如果还有大于4个字节的，那就是body里面内容，4个字节是长度标识符
-        if(byteBuf.readableBytes() > 4){
-            nettyMessage.setBody(marshallingDecoder.decode(byteBuf));
+        if(buffer.readableBytes() > 4){
+            nettyMessage.setBody(marshallingDecoder.decode(buffer));
         }
 
         nettyMessage.setHeader(header);

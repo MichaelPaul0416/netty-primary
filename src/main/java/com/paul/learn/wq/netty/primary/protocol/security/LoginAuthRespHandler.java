@@ -52,11 +52,11 @@ public class LoginAuthRespHandler extends ChannelHandlerAdapter {
                 }
             }
             logger.info("netty协议响应头对象【"+nettyMessage+"】");
-            context.fireChannelRead(nettyMessage);
-            }else{
+            context.writeAndFlush(nettyMessage);
+//            context.fireChannelRead(nettyMessage);
+        }else{
             context.fireChannelRead(nettyMessage);
         }
-
     }
 
     private NettyMessage builderNettyMessage(byte result){

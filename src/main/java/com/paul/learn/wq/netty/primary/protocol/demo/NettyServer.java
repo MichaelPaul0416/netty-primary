@@ -37,7 +37,7 @@ public class NettyServer {
             @Override
             protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
                 nioSocketChannel.pipeline().addLast(new NettyMessageDecoder(1024*1024,4,4));
-                nioSocketChannel.pipeline().addLast(new NettyMessageEncoder());
+                nioSocketChannel.pipeline().addLast("MessageEncoder",new NettyMessageEncoder());
                 nioSocketChannel.pipeline().addLast("readTimeoutHandler",new ReadTimeoutHandler(500));
                 nioSocketChannel.pipeline().addLast("loginAuthRespHandler",new LoginAuthRespHandler());
                 nioSocketChannel.pipeline().addLast("heartBeatHandler",new HeartBeatRespHandler());

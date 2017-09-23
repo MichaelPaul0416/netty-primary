@@ -30,6 +30,7 @@ public class LoginAuthReqHandler extends ChannelHandlerAdapter {
                 context.close();
             }else {
                 logger.info("登录成功：" + nettyMessage);
+                //传递到下一个handler中，暨HeartBeatReqHandler
                 context.fireChannelRead(nettyMessage);
             }
         }else{
