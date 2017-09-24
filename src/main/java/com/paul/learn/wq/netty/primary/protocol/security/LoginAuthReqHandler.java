@@ -7,6 +7,9 @@ import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 import org.apache.log4j.Logger;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Author:wangqiang20995
  * @description:
@@ -42,6 +45,10 @@ public class LoginAuthReqHandler extends ChannelHandlerAdapter {
         NettyMessage nettyMessage = new NettyMessage();
         NettyHeader nettyHeader = new NettyHeader();
         nettyHeader.setType(MessageType.HANDS_REQUEST);
+        Map<String,Object> map = new HashMap<>();
+        map.put("username","保罗");
+        map.put("password","123456");
+        nettyHeader.setAttachment(map);
         nettyMessage.setHeader(nettyHeader);
         return nettyMessage;
     }

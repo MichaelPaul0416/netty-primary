@@ -42,7 +42,7 @@ public class NettyClient {
                 protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
                     nioSocketChannel.pipeline().addLast(new NettyMessageDecoder(1024*1024,4,4));
                     nioSocketChannel.pipeline().addLast("MessageEncoder",new NettyMessageEncoder());
-                    nioSocketChannel.pipeline().addLast("readTimeoutHandler",new ReadTimeoutHandler(500));
+                    nioSocketChannel.pipeline().addLast("readTimeoutHandler",new ReadTimeoutHandler(5000));
                     nioSocketChannel.pipeline().addLast("LoginAuthHandler",new LoginAuthReqHandler());
                     nioSocketChannel.pipeline().addLast("HeartBeatHandler",new HeartBeatReqHandler());
                 }
@@ -57,7 +57,7 @@ public class NettyClient {
                 public void run() {
                     try {
                         logger.info("出现意外，休息100秒...");
-                        TimeUnit.SECONDS.sleep(5*1000);
+                        TimeUnit.SECONDS.sleep(500);
                         logger.info("开始重连...");
                         connect(host,port);
                     } catch (InterruptedException e) {
